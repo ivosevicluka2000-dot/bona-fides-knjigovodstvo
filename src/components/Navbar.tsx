@@ -1,0 +1,199 @@
+import React, { useState, useEffect } from 'react';
+import { Menu, X, Phone, MessageSquare } from 'lucide-react';
+import BfLogo from './BfLogo';
+import { businessDetails } from '../data';
+
+export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('pocetna');
+
+  const navLinks = [
+    { name: 'Početna', href: '#pocetna', id: 'pocetna' },
+    { name: 'O nama', href: '#o-nama', id: 'o-nama' },
+    { name: 'Usluge', href: '#usluge', id: 'usluge' },
+    { name: 'Galerija', href: '#galerija', id: 'galerija' },
+    { name: 'Kontakt', href: '#kontakt', id: 'kontakt' },
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+
+      // Simple active anchor observer
+      const scrollPosition = window.scrollY + 120;
+      for (const link of navLinks) {
+        const el = document.getElementById(link.id);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(link.id);
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    const element = document.getElementById(targetId);
+    if (element) {
+      const offset = 80; // height of sticky navbar
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
+      setActiveSection(targetId);
+    }
+    setIsOpen(false);
+  };
+
+  return (
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? 'bg-brand-cream/95 backdrop-blur-md shadow-md border-b border-brand-bronze/10 py-3'
+          : 'bg-transparent py-5'
+      }`}
+      id="main-header"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          
+          {/* Logo */}
+          <a 
+            href="#pocetna" 
+            onClick={(e) => handleLinkClick(e, 'pocetna')}
+            className="focus:outline-none"
+            aria-label="BONA FIDES V&D Početna"
+          >
+            <BfLogo size="md" variant="dark" />
+          </a>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-8" id="desktop-nav">
+            {navLinks.map((link) => (
+              <a
+                key={link.id}
+                href={link.href}
+                onClick={(e) => handleLinkClick(e, link.id)}
+                className={`relative py-2 font-sans text-sm font-medium tracking-wide transition-colors duration-200 focus:outline-none ${
+                  activeSection === link.id
+                    ? 'text-brand-walnut'
+                    : 'text-brand-chocolate/70 hover:text-brand-chocolate'
+                }`}
+              >
+                {link.name}
+                {/* Active indicator dot/line */}
+                {activeSection === link.id && (
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-brand-bronze rounded-full" />
+                )}
+              </a>
+            ))}
+          </nav>
+
+          {/* Right side Actions (Desktop) */}
+          <div className="hidden md:flex items-center gap-4">
+            <a
+              href={`tel:${businessDetails.phoneFormatted}`}
+              className="inline-flex items-center justify-center gap-2 px-4 py-2 border border-brand-walnut/20 rounded-full bg-brand-ivory text-xs font-semibold uppercase tracking-wider text-brand-walnut hover:bg-brand-cream hover:border-brand-walnut transition-all duration-300"
+              aria-label="Pozovite nas"
+            >
+              <Phone size={14} className="stroke-[2.5]" />
+              <span>{businessDetails.phone}</span>
+            </a>
+            <a
+              href="#kontakt"
+              onClick={(e) => handleLinkClick(e, 'kontakt')}
+              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-brand-walnut text-xs font-semibold uppercase tracking-wider text-brand-ivory hover:bg-brand-chocolate transition-all duration-300 shadow-sm"
+            >
+              Pošaljite upit
+            </a>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="flex items-center md:hidden gap-3">
+            <a
+              href={`tel:${businessDetails.phoneFormatted}`}
+              className="p-2.5 rounded-full bg-brand-ivory border border-brand-bronze/20 text-brand-walnut"
+              aria-label="Nazovite telefonom"
+            >
+              <Phone size={18} className="stroke-[2.5]" />
+            </a>
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2.5 rounded-full text-brand-chocolate hover:bg-brand-ivory border border-transparent hover:border-brand-bronze/10 transition-colors focus:outline-none"
+              aria-expanded={isOpen}
+              aria-controls="mobile-nav-menu"
+              aria-label={isOpen ? 'Zatvori meni' : 'Otvori meni'}
+              id="mobile-menu-btn"
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Navigation Drawer */}
+      <div
+        className={`md:hidden fixed inset-0 top-[80px] bg-brand-cream/98 backdrop-blur-lg z-40 transition-all duration-300 ease-in-out ${
+          isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
+        }`}
+        id="mobile-nav-menu"
+      >
+        <div className="px-4 pt-4 pb-8 space-y-3 shadow-lg border-b border-brand-bronze/10 max-h-[calc(100vh-80px)] overflow-y-auto">
+          {navLinks.map((link) => (
+            <a
+              key={link.id}
+              href={link.href}
+              onClick={(e) => handleLinkClick(e, link.id)}
+              className={`block px-4 py-3.5 rounded-xl font-sans text-base font-semibold tracking-wide transition-all ${
+                activeSection === link.id
+                  ? 'bg-brand-ivory text-brand-walnut border-l-4 border-brand-bronze pl-3'
+                  : 'text-brand-chocolate/80 hover:bg-brand-ivory/50 hover:text-brand-chocolate'
+              }`}
+            >
+              {link.name}
+            </a>
+          ))}
+          
+          <div className="pt-6 border-t border-brand-bronze/10 px-4 space-y-4">
+            <div className="text-xs font-semibold uppercase tracking-widest text-brand-taupe">
+              Kancelarija
+            </div>
+            <p className="text-sm font-medium text-brand-chocolate/80">
+              {businessDetails.address}<br />
+              {businessDetails.city}
+            </p>
+            <div className="flex flex-col gap-3 pt-2">
+              <a
+                href={`tel:${businessDetails.phoneFormatted}`}
+                className="flex items-center justify-center gap-3 w-full py-3.5 rounded-xl bg-brand-ivory border border-brand-walnut/30 text-brand-walnut font-bold text-sm tracking-wide"
+              >
+                <Phone size={16} />
+                Pozovite: {businessDetails.phone}
+              </a>
+              <a
+                href="#kontakt"
+                onClick={(e) => handleLinkClick(e, 'kontakt')}
+                className="flex items-center justify-center gap-3 w-full py-3.5 rounded-xl bg-brand-walnut text-brand-ivory font-bold text-sm tracking-wide shadow-sm"
+              >
+                <MessageSquare size={16} />
+                Pošaljite upit
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+}

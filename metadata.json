@@ -1,0 +1,6 @@
+{
+  "name": "Bona Fides V&D",
+  "description": "Knjigovodstvena agencija Bona Fides V&D iz Novog Sada pruža profesionalne knjigovodstvene usluge, poresko savetovanje, kadrovske poslove, platni promet i podršku pri osnivanju firmi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
