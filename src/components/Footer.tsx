@@ -26,12 +26,11 @@ export default function Footer() {
     { name: 'Početna', id: 'pocetna' },
     { name: 'O nama', id: 'o-nama' },
     { name: 'Usluge', id: 'usluge' },
-    { name: 'Galerija', id: 'galerija' },
     { name: 'Kontakt', id: 'kontakt' }
   ];
 
   return (
-    <footer className="bg-brand-chocolate text-brand-ivory pt-16 pb-12 border-t border-brand-bronze/20" id="main-footer">
+    <footer className="bg-brand-black text-brand-ivory pt-16 pb-12 border-t border-brand-gold/20" id="main-footer">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main Footer Content */}
@@ -101,9 +100,6 @@ export default function Footer() {
           {/* Right: Copyright */}
           <div className="text-center sm:text-right">
             <p>&copy; {currentYear} {businessDetails.name}. Sva prava zadržana.</p>
-            <p className="text-[9px] text-brand-cream/40 mt-1 uppercase tracking-wider">
-              Dizajnirano za optimalnu Vercel i GitHub Pages integraciju
-            </p>
           </div>
 
         </div>

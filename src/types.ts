@@ -5,13 +5,6 @@ export interface Service {
   description: string;
 }
 
-export interface GalleryItem {
-  id: string;
-  imageUrl: string;
-  alt: string;
-  caption: string;
-}
-
 export interface ContactFormInput {
   name: string;
   email: string;

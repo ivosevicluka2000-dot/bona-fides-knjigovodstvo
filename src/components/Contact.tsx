@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Phone, Mail, Clock, MapPin, Send, CheckCircle2, MessageCircle, Info } from 'lucide-react';
 import { businessDetails } from '../data';
 import { ContactFormInput } from '../types';
+import Reveal from './motion/Reveal';
 
 export default function Contact() {
   const [formData, setFormData] = useState<ContactFormInput>({
@@ -111,24 +112,24 @@ export default function Contact() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-bold uppercase tracking-widest text-brand-bronze">
+        <Reveal className="text-center max-w-3xl mx-auto mb-16">
+          <span className="text-xs font-bold uppercase tracking-widest text-brand-gold-deep">
             Kontakt
           </span>
           <h2 className="font-serif text-3xl sm:text-4.5xl font-bold text-brand-chocolate mt-2 tracking-tight">
             Otpočnimo uspešnu saradnju
           </h2>
-          <div className="w-16 h-[2px] bg-brand-bronze/50 mx-auto mt-4" />
+          <div className="w-16 h-[2px] bg-brand-gold mx-auto mt-4" />
           <p className="font-sans text-sm sm:text-base text-brand-chocolate/80 mt-4 leading-relaxed">
             Kontaktirajte nas radi konsultacija, ponuda ili bilo kakvih nedoumica. Javićemo vam se u najkraćem roku.
           </p>
-        </div>
+        </Reveal>
 
         {/* Contact Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           
           {/* Left Side: Contact Information & Legal Details */}
-          <div className="lg:col-span-5 space-y-8" id="contact-info-block">
+          <Reveal className="lg:col-span-5 space-y-8"><div className="space-y-8" id="contact-info-block">
             
             {/* Quick Contact Cards */}
             <div className="p-8 rounded-2xl bg-brand-ivory border border-brand-bronze/10 space-y-6">
@@ -184,7 +185,7 @@ export default function Contact() {
             </div>
 
             {/* Live Chat & Instant Messengers */}
-            <div className="p-8 rounded-2xl bg-brand-chocolate text-brand-cream space-y-5 shadow-sm">
+            <div className="p-8 rounded-2xl bg-brand-black text-brand-cream space-y-5 shadow-lg border border-brand-gold/25">
               <h3 className="font-serif text-lg font-bold text-brand-bronze">
                 Brzi kontakt i konsultacije
               </h3>
@@ -244,10 +245,10 @@ export default function Contact() {
               </div>
             </div>
 
-          </div>
+          </div></Reveal>
 
           {/* Right Side: Interactive Inquiry Form */}
-          <div className="lg:col-span-7 bg-brand-ivory border border-brand-bronze/15 p-8 sm:p-10 rounded-2xl shadow-sm" id="contact-form-block">
+          <Reveal delay={0.15} className="lg:col-span-7"><div className="bg-brand-ivory border border-brand-gold/20 p-8 sm:p-10 rounded-2xl shadow-sm h-full" id="contact-form-block">
             
             <h3 className="font-serif text-2xl font-bold text-brand-chocolate mb-2">
               Pošaljite nam upit
@@ -278,7 +279,7 @@ export default function Contact() {
                   </button>
                   <a
                     href={`mailto:${businessDetails.email}`}
-                    className="px-6 py-3 rounded-full bg-brand-walnut text-brand-ivory hover:bg-brand-chocolate font-medium text-xs uppercase tracking-wider transition-colors"
+                    className="px-6 py-3 rounded-full bg-brand-gold text-brand-black hover:bg-brand-gold-bright font-medium text-xs uppercase tracking-wider transition-colors"
                   >
                     Otvori e-mail ručno
                   </a>
@@ -300,7 +301,7 @@ export default function Contact() {
                       value={formData.name}
                       onChange={handleInputChange}
                       className={`w-full px-4 py-3.5 rounded-xl border bg-brand-ivory focus:bg-white text-sm text-brand-chocolate transition-all focus:outline-none ${
-                        errors.name ? 'border-red-500 focus:border-red-500' : 'border-brand-bronze/25 focus:border-brand-bronze'
+                        errors.name ? 'border-red-500 focus:border-red-500' : 'border-brand-gold/25 focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20'
                       }`}
                       placeholder="npr. Marko Marković"
                     />
@@ -319,7 +320,7 @@ export default function Contact() {
                       value={formData.phone}
                       onChange={handleInputChange}
                       className={`w-full px-4 py-3.5 rounded-xl border bg-brand-ivory focus:bg-white text-sm text-brand-chocolate transition-all focus:outline-none ${
-                        errors.phone ? 'border-red-500 focus:border-red-500' : 'border-brand-bronze/25 focus:border-brand-bronze'
+                        errors.phone ? 'border-red-500 focus:border-red-500' : 'border-brand-gold/25 focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20'
                       }`}
                       placeholder="npr. 064123456"
                     />
@@ -339,7 +340,7 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleInputChange}
                     className={`w-full px-4 py-3.5 rounded-xl border bg-brand-ivory focus:bg-white text-sm text-brand-chocolate transition-all focus:outline-none ${
-                      errors.email ? 'border-red-500 focus:border-red-500' : 'border-brand-bronze/25 focus:border-brand-bronze'
+                      errors.email ? 'border-red-500 focus:border-red-500' : 'border-brand-gold/25 focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20'
                     }`}
                     placeholder="npr. marko@kompanija.rs"
                   />
@@ -358,7 +359,7 @@ export default function Contact() {
                     value={formData.message}
                     onChange={handleInputChange}
                     className={`w-full px-4 py-3.5 rounded-xl border bg-brand-ivory focus:bg-white text-sm text-brand-chocolate transition-all focus:outline-none resize-none ${
-                      errors.message ? 'border-red-500 focus:border-red-500' : 'border-brand-bronze/25 focus:border-brand-bronze'
+                      errors.message ? 'border-red-500 focus:border-red-500' : 'border-brand-gold/25 focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20'
                     }`}
                     placeholder="Ukratko opišite vašu delatnost, pravnu formu (d.o.o, preduzetnik) i usluge za koje ste zainteresovani..."
                   />
@@ -377,11 +378,11 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-brand-walnut text-brand-ivory hover:bg-brand-chocolate disabled:bg-brand-walnut/60 font-semibold text-xs uppercase tracking-wider transition-all duration-300 shadow-sm"
+                  className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-brand-gold text-brand-black hover:bg-brand-gold-bright disabled:bg-brand-gold/60 font-semibold text-xs uppercase tracking-wider transition-all duration-300 shadow-[0_0_25px_-8px_rgba(201,162,75,0.6)]"
                 >
                   {isSubmitting ? (
                     <>
-                      <div className="w-4 h-4 border-2 border-brand-ivory border-t-transparent rounded-full animate-spin" />
+                      <div className="w-4 h-4 border-2 border-brand-black border-t-transparent rounded-full animate-spin" />
                       <span>Slanje upita...</span>
                     </>
                   ) : (
@@ -393,7 +394,7 @@ export default function Contact() {
                 </button>
               </form>
             )}
-          </div>
+          </div></Reveal>
 
         </div>
 

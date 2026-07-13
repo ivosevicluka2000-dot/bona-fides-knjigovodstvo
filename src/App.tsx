@@ -3,9 +3,10 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import AboutUs from './components/AboutUs';
 import Services from './components/Services';
-import Gallery from './components/Gallery';
+import ImageBand from './components/ImageBand';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import ScrollProgress from './components/motion/ScrollProgress';
 
 export default function App() {
   // Structured JSON-LD Data for Accounting Service
@@ -15,8 +16,8 @@ export default function App() {
     "name": "Bona Fides V&D",
     "alternateName": "Knjigovodstvena agencija Bona Fides V&D",
     "description": "Knjigovodstvena agencija Bona Fides V&D iz Novog Sada pruža vrhunske knjigovodstvene usluge, poresko savetovanje, platni promet i kadrovske poslove za pravna lica i preduzetnike.",
-    "image": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=1200",
-    "logo": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=300",
+    "image": "https://bonafides.rs/images/hero-bg.jpg",
+    "logo": "https://bonafides.rs/logo.png",
     "url": "https://bonafides.rs/",
     "telephone": "+381641658424",
     "email": "bonafidesknjigovodstvo@gmail.com",
@@ -53,12 +54,15 @@ export default function App() {
   };
 
   return (
-    <div className="relative min-h-screen bg-brand-cream text-brand-chocolate flex flex-col selection:bg-brand-bronze selection:text-brand-ivory" id="root-layout">
+    <div className="relative min-h-screen bg-brand-black text-brand-cream flex flex-col selection:bg-brand-gold selection:text-brand-black" id="root-layout">
       {/* Schema.org Structured Data Injection */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
+
+      {/* Gold scroll progress indicator */}
+      <ScrollProgress />
 
       {/* Primary Sticky Header */}
       <Navbar />
@@ -68,7 +72,7 @@ export default function App() {
         <Hero />
         <AboutUs />
         <Services />
-        <Gallery />
+        <ImageBand />
         <Contact />
       </main>
 
