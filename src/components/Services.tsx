@@ -24,7 +24,8 @@ export default function Services() {
 
   const handleContactScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    const element = document.getElementById('kontakt');
+    // Land on the inquiry form itself, not just the section top
+    const element = document.getElementById('contact-form-block');
     if (element) {
       const offset = 80;
       const bodyRect = document.body.getBoundingClientRect().top;

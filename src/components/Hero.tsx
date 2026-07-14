@@ -38,7 +38,9 @@ export default function Hero() {
 
   const handleCtaClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
-    const element = document.getElementById(targetId);
+    // "Kontakt" should land on the inquiry form itself, not just the section top
+    const scrollTargetId = targetId === 'kontakt' ? 'contact-form-block' : targetId;
+    const element = document.getElementById(scrollTargetId);
     if (element) {
       const offset = 80;
       const bodyRect = document.body.getBoundingClientRect().top;
