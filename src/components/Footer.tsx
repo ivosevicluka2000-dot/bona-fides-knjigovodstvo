@@ -94,7 +94,7 @@ export default function Footer() {
           <div className="flex flex-wrap gap-x-6 gap-y-2 justify-center sm:justify-start">
             <span>PIB: <strong className="font-mono text-brand-cream/80">{businessDetails.pib}</strong></span>
             <span>Matični broj: <strong className="font-mono text-brand-cream/80">{businessDetails.mb}</strong></span>
-            <span>Zastupnik: <strong className="text-brand-cream/80">{businessDetails.owner}</strong></span>
+            <span>Preduzetnik: <strong className="text-brand-cream/80">{businessDetails.owner}</strong></span>
           </div>
 
           {/* Right: Copyright */}

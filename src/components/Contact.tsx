@@ -228,11 +228,11 @@ export default function Contact() {
             {/* Legal Identification parameters */}
             <div className="p-6 rounded-xl bg-brand-ivory/50 border border-brand-bronze/10 text-xs text-brand-chocolate/80 space-y-2">
               <div className="flex justify-between border-b border-brand-bronze/10 pb-2">
-                <span className="font-medium text-brand-taupe">Pravno lice:</span>
+                <span className="font-medium text-brand-taupe">Poslovno ime:</span>
                 <span className="font-bold">{businessDetails.name}</span>
               </div>
               <div className="flex justify-between border-b border-brand-bronze/10 pb-2">
-                <span className="font-medium text-brand-taupe">Zastupnik:</span>
+                <span className="font-medium text-brand-taupe">Preduzetnik:</span>
                 <span className="font-bold">{businessDetails.owner}</span>
               </div>
               <div className="flex justify-between border-b border-brand-bronze/10 pb-2">

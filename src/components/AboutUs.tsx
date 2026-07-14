@@ -44,7 +44,7 @@ export default function AboutUs() {
 
             <Reveal delay={0.1}>
               <p className="text-sm sm:text-base text-brand-chocolate/85 leading-relaxed">
-                Vaš biznis je jedinstven — zato nudimo personalizovanu podršku i pristup prilagođen vašim stvarnim potrebama, uz savremeni softver za brzu razmenu dokumentacije i jasan uvid u poslovanje u svakom trenutku. Komunikacija je brza, direktna i bez komplikovanog žargona.
+                Vaš biznis je jedinstven — zato nudimo personalizovanu podršku i pristup prilagođen vašim stvarnim potrebama, uz savremeni softver za brzu razmenu dokumentacije i jasan uvid u poslovanje u svakom trenutku. Komunikacija je brza i direktna.
               </p>
             </Reveal>
 
@@ -56,7 +56,7 @@ export default function AboutUs() {
                   &ldquo;Fokusirajte se na rast poslovanja, a knjigovodstvene poslove prepustite nama.&rdquo;
                 </p>
                 <div className="mt-4 text-xs font-bold uppercase tracking-wider text-brand-gold-deep">
-                  — Ljiljana Marić, osnivač i zastupnik
+                  — Ljiljana Marić
                 </div>
               </div>
             </Reveal>
@@ -76,7 +76,7 @@ export default function AboutUs() {
                 >
                   <img
                     src="/images/about-still-life.jpg"
-                    alt="Elegantan radni sto sa poslovnim knjigama i zlatnim nalivperom"
+                    alt="Moderan radni sto sa laptopom, finansijskim grafikonima i digitalnim izveštajima"
                     width={1200}
                     height={1500}
                     loading="lazy"

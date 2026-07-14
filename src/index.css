@@ -30,6 +30,10 @@
 /* Custom smooth scrolling and fine scrollbars */
 html {
   scroll-behavior: smooth;
+  /* Prevent horizontal edge-swipe gestures from being misread as page
+     navigation on mobile (Android Chrome back-swipe glitch). */
+  overscroll-behavior-x: none;
+  touch-action: pan-y;
 }
 
 body {
@@ -39,6 +43,8 @@ body {
   font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior-x: none;
+  overflow-x: hidden;
 }
 
 /* Premium text selection */

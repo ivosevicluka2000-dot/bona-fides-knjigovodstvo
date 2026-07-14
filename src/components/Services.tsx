@@ -120,12 +120,16 @@ export default function Services() {
                   </div>
 
                   {/* Card CTA/Anchor */}
-                  <div className="mt-8 pt-4 border-t border-brand-gold/10 flex items-center justify-between text-brand-gold group-hover:text-brand-gold-bright transition-colors">
+                  <a
+                    href="#kontakt"
+                    onClick={handleContactScroll}
+                    className="relative z-10 mt-8 pt-4 border-t border-brand-gold/10 flex items-center justify-between text-brand-gold group-hover:text-brand-gold-bright transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold rounded"
+                  >
                     <span className="text-[10px] font-bold uppercase tracking-wider">
                       Saznajte više / Upit
                     </span>
                     <Icons.ArrowUpRight size={16} className="transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                  </div>
+                  </a>
                 </TiltCard>
               </motion.div>
             );
