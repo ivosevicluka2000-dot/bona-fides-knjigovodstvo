@@ -17,8 +17,13 @@ export default function Contact() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
-  // Web3Forms access key — set VITE_WEB3FORMS_ACCESS_KEY in .env (see .env.example)
-  const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY as string | undefined;
+  // Web3Forms access key. These keys are public by design (they live in the
+  // client-side form markup), so the account key is committed as the default
+  // and works on any deploy without extra config. Override via
+  // VITE_WEB3FORMS_ACCESS_KEY in .env to rotate the key without a code change.
+  const WEB3FORMS_ACCESS_KEY =
+    (import.meta.env.VITE_WEB3FORMS_ACCESS_KEY as string | undefined) ||
+    'b3b4198c-1c62-4ef2-ae52-0104aa5099ac';
 
   const validate = (): boolean => {
     const tempErrors: Partial<ContactFormInput> = {};

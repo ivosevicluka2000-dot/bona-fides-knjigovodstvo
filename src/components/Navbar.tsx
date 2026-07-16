@@ -37,6 +37,14 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock background scroll while the mobile menu is open
+  useEffect(() => {
+    if (!isOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = prev; };
+  }, [isOpen]);
+
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
     // "Kontakt" should land on the inquiry form itself, not just the section top
@@ -59,6 +67,7 @@ export default function Navbar() {
   };
 
   return (
+    <>
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
@@ -144,14 +153,21 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Navigation Drawer */}
+    </header>
+
+    {/* Mobile Navigation Drawer — rendered OUTSIDE <header> on purpose:
+        the scrolled header applies backdrop-filter, which turns it into the
+        containing block for position:fixed descendants. Nested here, the
+        drawer anchored to the (short) header instead of the viewport and
+        collapsed to ~8px tall, spilling the links over the page. As a sibling
+        it anchors to the viewport and covers the screen correctly. */}
       <div
-        className={`md:hidden fixed inset-0 top-[80px] bg-brand-black/95 backdrop-blur-lg z-40 transition-all duration-300 ease-in-out ${
+        className={`md:hidden fixed inset-x-0 top-[80px] bottom-0 bg-brand-black/95 backdrop-blur-lg z-40 transition-all duration-300 ease-in-out ${
           isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
         }`}
         id="mobile-nav-menu"
       >
-        <div className="px-4 pt-4 pb-8 space-y-3 shadow-lg border-b border-brand-gold/15 max-h-[calc(100vh-80px)] overflow-y-auto">
+        <div className="px-4 pt-4 pb-8 space-y-3 shadow-lg border-b border-brand-gold/15 max-h-[calc(100dvh-80px)] overflow-y-auto">
           {navLinks.map((link) => (
             <a
               key={link.id}
@@ -195,6 +211,6 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-    </header>
+    </>
   );
 }
